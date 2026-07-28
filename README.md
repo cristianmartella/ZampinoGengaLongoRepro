@@ -77,7 +77,7 @@ docker run --rm -v "$(pwd)/results:/app/results" -e  MODEL_A_PATH=models-variant
 Pull and run the image released on Docker Hub:
 
 ```bash
-docker run --rm -v "$(pwd)/results:/app/results" -e  MODEL_A_PATH=models-variants/dataset2/models/birthCertificate_p31.pnml -e MODEL_B_PATH=models-variants/dataset2/models/birthCertificate_p32.pnml francizampi/reproducibility-behavioural
+docker run --rm -v "$(pwd)/results:/app/results" -e  MODEL_A_PATH=models-variants/dataset2/models/birthCertificate_p31.pnml -e MODEL_B_PATH=models-variants/dataset2/models/birthCertificate_p32.pnml francizampi/reproducibility-behavioural:1.0
 ```
 
 ### Run with docker compose
