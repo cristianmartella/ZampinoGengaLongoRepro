@@ -1,4 +1,4 @@
-# -SLRZampinoGengaLongoRepro
+# SLRZampinoGengaLongoRepro
 This repository contains the code and PNML models used to compute process model comparison metrics, including fitness, precision, generalization, simplicity, PES, PSP, TAR similarity, and F1-scores for events and relations.
 
 ## Dataset benchmark
@@ -94,10 +94,8 @@ docker compose up
 podman compose up
 ```
 
-> [!tip] Rebuild image locally
->
+> [!Tip] Rebuild image locally
 > `docker compose up --build`
 
-> [!note] Environment variables
->
+> [!Note] Environment variables
 > The `docker-compose.yaml` file includes the key-value definition of the environment variables under the path _services>bpmn>environment_.
