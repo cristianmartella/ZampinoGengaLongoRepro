@@ -66,8 +66,8 @@ results_dir = "results"
 os.makedirs(results_dir, exist_ok=True)
 
 # Percorsi modelli
-model_a_path = "models-variants/dataset2/models/birthCertificate_p31.pnml"
-model_b_path = "models-variants/dataset2/models/birthCertificate_p32.pnml"
+model_a_path = os.getenv("MODEL_A_PATH", "models-variants/dataset2/models/birthCertificate_p31.pnml")
+model_b_path = os.getenv("MODEL_B_PATH", "models-variants/dataset2/models/birthCertificate_p32.pnml")
 
 # Importa modelli
 net_a, im_a, fm_a = pnml_importer.apply(model_a_path)
@@ -143,3 +143,5 @@ plt.grid(True, linestyle='--', alpha=0.5)
 plt.legend()
 plt.tight_layout()
 plt.show()
+plt.savefig(os.path.join(results_dir, "f1_scores_plot.png"))
+print(f"✅ F1 scores plot saved to {os.path.join(results_dir, 'f1_scores_plot.png')}")
