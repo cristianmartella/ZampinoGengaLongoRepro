@@ -1,4 +1,4 @@
-# -SLRZampinoGengaLongoRepro
+# SLRZampinoGengaLongoRepro
 This repository contains the code and PNML models used to compute process model comparison metrics, including fitness, precision, generalization, simplicity, PES, PSP, TAR similarity, and F1-scores for events and relations.
 
 ## Dataset benchmark
@@ -34,24 +34,53 @@ Parallel execution is not implemented in the current code. However, it can be ac
 ## Installation
 Create a Python 3.11 virtual environment and install dependencies:
 
+### Linux/Mac
+```bash
 bash
 python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
+source venv/bin/activate
 pip install -r requirements.txt
+```
 
-## Running with Docker
+### Windows
+```bash
+bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## Running the script
 
 This project can be executed in a fully reproducible environment using Docker, avoiding the need to manually install Python or dependencies.
 
+### Environment variables
+To run the script, the following environmental variables need to be defined:
+
+| name | description |
+| --- | --- |
+| MODEL_A_PATH | Path to the A model in the comparison. Defaults to 'models-variants/dataset2/models/birthCertificate_p31.pnml' |
+| MODEL_B_PATH | Path to the B model in the comparison. Defaults to 'models-variants/dataset2/models/birthCertificate_p32.pnml'|
+
+The execution steps below already include the full definition of such environment variables.
+
+### Build a and run a local image
 Build the Docker image and run the container:
 
 ```bash
-docker build -t zgl-repro .
-docker run --rm -v "$(pwd)/results:/app/results" zgl-repro
+docker build -t reproducibility-behavioural .
+docker run --rm -v "$(pwd)/results:/app/results" -e  MODEL_A_PATH=models-variants/dataset2/models/birthCertificate_p31.pnml -e MODEL_B_PATH=models-variants/dataset2/models/birthCertificate_p32.pnml reproducibility-behavioural
 ```
 
-### Running with docker compose
+### Pull and run the image on Docker Hub
+
+Pull and run the image released on Docker Hub:
+
+```bash
+docker run --rm -v "$(pwd)/results:/app/results" -e  MODEL_A_PATH=models-variants/dataset2/models/birthCertificate_p31.pnml -e MODEL_B_PATH=models-variants/dataset2/models/birthCertificate_p32.pnml francizampi/reproducibility-behavioural:1.0
+```
+
+### Run with docker compose
 
 All in one build and run with docker compose:
 
@@ -64,3 +93,9 @@ docker compose up
 ```bash
 podman compose up
 ```
+
+> [!Tip] Rebuild image locally
+> `docker compose up --build`
+
+> [!Note] Environment variables
+> The `docker-compose.yaml` file includes the key-value definition of the environment variables under the path _services>bpmn>environment_.
