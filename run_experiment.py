@@ -33,7 +33,7 @@ print("pm4py:", pm4py.__version__)
 MODELS_DIR = Path("assets/models/")
 
 # Carica il catalogo delle coppie da un file CSV, se presente.
-PAIRS_CATALOG_CSV = os.environ.get("PAIRS_CATALOG_CSV", "assets/pairs_catalog_models.csv")
+PAIRS_CATALOG_CSV = os.environ.get("PAIRS_CATALOG_CSV", "assets/pairs-catalog-models.csv")
 print("Contenuto cartella modelli:", Path(PAIRS_CATALOG_CSV))
 
 
