@@ -54,22 +54,12 @@ pip install -r requirements.txt
 
 This project can be executed in a fully reproducible environment using Docker, avoiding the need to manually install Python or dependencies.
 
-### Environment variables
-To run the script, the following environmental variables need to be defined:
-
-| name | description |
-| --- | --- |
-| MODEL_A_PATH | Path to the A model in the comparison. Defaults to 'models-variants/dataset2/models/birthCertificate_p31.pnml' |
-| MODEL_B_PATH | Path to the B model in the comparison. Defaults to 'models-variants/dataset2/models/birthCertificate_p32.pnml'|
-
-The execution steps below already include the full definition of such environment variables.
-
 ### Build a and run a local image
 Build the Docker image and run the container:
 
 ```bash
 docker build -t reproducibility-behavioural .
-docker run --rm -v "$(pwd)/results:/app/results" -e  MODEL_A_PATH=models-variants/dataset2/models/birthCertificate_p31.pnml -e MODEL_B_PATH=models-variants/dataset2/models/birthCertificate_p32.pnml reproducibility-behavioural
+docker run --rm -v "$(pwd)/results:/app/results"
 ```
 
 ### Pull and run the image on Docker Hub
@@ -77,7 +67,7 @@ docker run --rm -v "$(pwd)/results:/app/results" -e  MODEL_A_PATH=models-variant
 Pull and run the image released on Docker Hub:
 
 ```bash
-docker run --rm -v "$(pwd)/results:/app/results" -e  MODEL_A_PATH=models-variants/dataset2/models/birthCertificate_p31.pnml -e MODEL_B_PATH=models-variants/dataset2/models/birthCertificate_p32.pnml francizampi/reproducibility-behavioural:1.0
+docker run --rm -v "$(pwd)/results:/app/results"
 ```
 
 ### Run with docker compose
