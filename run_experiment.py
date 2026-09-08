@@ -51,7 +51,7 @@ RESULTS_DIR.mkdir(exist_ok=True, parents=True)
 # Coppie dell'esperimento, definite esplicitamente prima dell'esecuzione.
 # L'ordine A -> B è rilevante per PM4Py.
 print(f"Caricamento coppie da {PAIRS_CATALOG_CSV}")
-df_pairs = pd.read_csv(PAIRS_CATALOG_CSV)
+df_pairs = pd.read_csv(Path(PAIRS_CATALOG_CSV))
 PAIRS = list(df_pairs.itertuples(index=False, name=None))
 
 
