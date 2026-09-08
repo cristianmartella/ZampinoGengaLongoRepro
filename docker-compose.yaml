@@ -6,8 +6,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      - MODEL_A_PATH=models-variants/dataset2/models/birthCertificate_p31.pnml
-      - MODEL_B_PATH=models-variants/dataset2/models/birthCertificate_p32.pnml
     volumes:
       - ./output/:/app/results
