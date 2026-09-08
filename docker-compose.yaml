@@ -6,5 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - PAIRS_CATALOG_CSV=assets/pairs-catalog-models.csv
     volumes:
       - ./output/:/app/results

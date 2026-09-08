@@ -54,12 +54,21 @@ pip install -r requirements.txt
 
 This project can be executed in a fully reproducible environment using Docker, avoiding the need to manually install Python or dependencies.
 
+### Environment variables
+To run the script, the following environmental variables need to be defined:
+
+| name | description |
+| --- | --- |
+| PAIRS_CATALOG_CSV | Path to the model pairs in the comparison. Defaults to 'assets/pairs-catalog-models.pnml' |
+
+The execution steps below already include the full definition of such environment variables.
+
 ### Build a and run a local image
 Build the Docker image and run the container:
 
 ```bash
 docker build -t reproducibility-behavioural .
-docker run --rm -v "$(pwd)/results:/app/results"
+docker run --rm -v "$(pwd)/results:/app/results" -e PAIRS_CATALOG_CSV=assets/pairs-catalog-models.pnml
 ```
 
 ### Pull and run the image on Docker Hub
@@ -67,7 +76,7 @@ docker run --rm -v "$(pwd)/results:/app/results"
 Pull and run the image released on Docker Hub:
 
 ```bash
-docker run --rm -v "$(pwd)/results:/app/results"
+docker run --rm -v "$(pwd)/results:/app/results" -e PAIRS_CATALOG_CSV=assets/pairs-catalog-models.pnml
 ```
 
 ### Run with docker compose
