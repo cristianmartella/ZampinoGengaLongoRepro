@@ -30,7 +30,12 @@ print("pm4py:", pm4py.__version__)
 
 
 # I PNML devono trovarsi nella stessa cartella del notebook.
-MODELS_DIR = Path("models-variants/dataset2/models/")
+MODELS_DIR = Path("assets/models/")
+
+# Carica il catalogo delle coppie da un file CSV, se presente.
+PAIRS_CATALOG_CSV = os.environ.get("PAIRS_CATALOG_CSV", "assets/pairs-catalog-models.csv")
+print("Contenuto cartella modelli:", Path(PAIRS_CATALOG_CSV))
+
 
 # Parametri dell'esperimento.
 RANDOM_SEED = 42
@@ -45,7 +50,13 @@ RESULTS_DIR.mkdir(exist_ok=True, parents=True)
 
 # Coppie dell'esperimento, definite esplicitamente prima dell'esecuzione.
 # L'ordine A -> B è rilevante per PM4Py.
-PAIRS = [('birthCertificate_p248.pnml', 'birthCertificate_p249.pnml'), ('birthCertificate_p249.pnml', 'birthCertificate_p250.pnml'), ('birthCertificate_p31 (3).pnml', 'birthCertificate_p33.pnml'), ('birthCertificate_p248.pnml', 'birthCertificate_p250.pnml'), ('birthCertificate_p248.pnml', 'birthCertificate_p247.pnml'), ('birthCertificate_p249.pnml', 'birthCertificate_p248.pnml'), ('birthCertificate_p249.pnml', 'birthCertificate_p247.pnml')]
+print(f"Caricamento coppie da {PAIRS_CATALOG_CSV}")
+df_pairs = pd.read_csv(Path(PAIRS_CATALOG_CSV))
+PAIRS = list(df_pairs.itertuples(index=False, name=None))
+
+
+
+# PAIRS = [('birthCertificate_p248.pnml', 'birthCertificate_p249.pnml'), ('birthCertificate_p249.pnml', 'birthCertificate_p250.pnml'), ('birthCertificate_p31 (3).pnml', 'birthCertificate_p33.pnml'), ('birthCertificate_p248.pnml', 'birthCertificate_p250.pnml'), ('birthCertificate_p248.pnml', 'birthCertificate_p247.pnml'), ('birthCertificate_p249.pnml', 'birthCertificate_p248.pnml'), ('birthCertificate_p249.pnml', 'birthCertificate_p247.pnml')]
 
 # print("Numero di coppie:", len(PAIRS))
 # for index, (model_a, model_b) in enumerate(PAIRS, start=1):
